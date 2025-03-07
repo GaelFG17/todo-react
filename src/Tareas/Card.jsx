@@ -3,7 +3,7 @@ import React from 'react'
 
 // eslint-disable-next-line react/prop-types
 const Card = (props) => {
-    const estado = props.isComplete
+    const [estado, setEstado] = React.useState(props.isComplete)
     const titulo = props.titulo
     const descrip = props.descripccion
     return (
@@ -12,7 +12,11 @@ const Card = (props) => {
                 <h3 className={estado?"text-secondary text-decoration-line-through" : 'text-primary'}>{titulo}</h3>
                 <p className='text-secondary'>{descrip}</p>
             </div>
-            <i className={estado?"bi bi-trash2 text-danger fs-4" : 'bi bi-journal-check text-success fs-4'}></i>
+            <i className={estado?"bi bi-trash2 text-danger fs-4" : 'bi bi-journal-check text-success fs-4'}
+            onClick={()=>{
+                setEstado(!estado)
+            }}
+            ></i>
         </div>
     )
 }
