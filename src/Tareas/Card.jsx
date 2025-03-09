@@ -3,9 +3,13 @@ import React from 'react'
 
 // eslint-disable-next-line react/prop-types
 const Card = (props) => {
-    const [estado, setEstado] = React.useState(props.isComplete)
+    const estado = props.isComplete
     const titulo = props.titulo
     const descrip = props.descripccion
+    const setEstado = props.setEstado
+    const actualizar = props.actualizar
+    const eliminar = props.eliminar
+    const id = props.id
     return (
         <div className="card col-12 p-2 shadow-sm flex-row justify-content-between mb-2">
             <div className='col-8'>
@@ -14,7 +18,12 @@ const Card = (props) => {
             </div>
             <i className={estado?"bi bi-trash2 text-danger fs-4" : 'bi bi-journal-check text-success fs-4'}
             onClick={()=>{
-                setEstado(!estado)
+                if(estado){
+                   console.log("borrar")
+                   eliminar(id)
+                }else{
+                    actualizar(estado, setEstado)
+                }
             }}
             ></i>
         </div>
